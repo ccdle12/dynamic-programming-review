@@ -67,7 +67,7 @@ fn bottom_up_improved(num: i32) -> i32 {
     let mut n2 = 0;
 
     for i in 2..num {
-        let mut current = n1 + n2;
+        let current = n1 + n2;
 
         // Shift.
         n2 = n1;
