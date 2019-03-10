@@ -1,3 +1,9 @@
+// "FAST" - Strategy
+// F - First Solution.
+// A - Analyze Solution.
+// S - Find the subproblems.
+// T - Turn the solution around.
+
 fn fib(num: i32) -> i32 {
     let mut cache = vec![];
     for _i in 0..num + 1 {
@@ -7,6 +13,11 @@ fn fib(num: i32) -> i32 {
     private_fib(num, &mut cache)
 }
 
+// 1. Start withe a brute force naive solution. "F"
+// 2. Add a cache to be returned, this ensures we do not continue to make duplicate recursive
+//    calls. "A"
+// 3. Brute Force - Space Complexity: O(2^n), the recursive tree has n levels and each level calls
+//    two recursive functions. "S"
 fn private_fib(num: i32, cache: &mut Vec<i32>) -> i32 {
     if num == 0 {
         return 0;
@@ -27,6 +38,8 @@ fn private_fib(num: i32, cache: &mut Vec<i32>) -> i32 {
     cache[num as usize]
 }
 
+// 4. Approach the problem from the bottom up, take the recursive solution and use an interatrive
+//    approach. - "T"
 fn bottom_up(num: i32) -> i32 {
     // Deal with the base cases first.
     // Create a cache that catches 1-3.
@@ -41,6 +54,27 @@ fn bottom_up(num: i32) -> i32 {
     }
 
     cache[num as usize]
+}
+
+// We only need the last two numbers.
+fn bottom_up_improved(num: i32) -> i32 {
+    // Cover the first 3 base cases.
+    if num < 2 {
+        return num;
+    };
+
+    let mut n1 = 1;
+    let mut n2 = 0;
+
+    for i in 2..num {
+        let mut current = n1 + n2;
+
+        // Shift.
+        n2 = n1;
+        n1 = current;
+    }
+
+    n1 + n2
 }
 
 #[cfg(test)]
@@ -85,6 +119,10 @@ mod tests {
             // Testing the bottom-up approach.
             let result = bottom_up(i as i32);
             assert_eq!(expected[i], result);
+
+            // Testing improved bottom-up approach.
+            let result = bottom_up_improved(i as i32);
+            assert_eq!(expected[i], result)
         }
     }
 }
