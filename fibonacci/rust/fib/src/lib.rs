@@ -1,6 +1,6 @@
 fn fib(num: i32) -> i32 {
     let mut cache = vec![];
-    for i in 0..num + 1 {
+    for _i in 0..num + 1 {
         cache.push(-1);
     }
 
@@ -23,6 +23,22 @@ fn private_fib(num: i32, cache: &mut Vec<i32>) -> i32 {
 
     let result = private_fib(num - 1, cache) + private_fib(num - 2, cache);
     cache.insert(num as usize, result);
+
+    cache[num as usize]
+}
+
+fn bottom_up(num: i32) -> i32 {
+    // Deal with the base cases first.
+    // Create a cache that catches 1-3.
+    let mut cache = vec![0, 1, 1];
+
+    // Fill the cache up to num.
+    // Iteratively fill the cache until we have fib(num).
+    for i in 2..(num + 1) {
+        let index = i as usize;
+        let result = cache[index - 1] + cache[index - 2];
+        cache.insert(index, result);
+    }
 
     cache[num as usize]
 }
@@ -64,6 +80,10 @@ mod tests {
 
         for i in 0..expected.len() {
             let result = fib(i as i32);
+            assert_eq!(expected[i], result);
+
+            // Testing the bottom-up approach.
+            let result = bottom_up(i as i32);
             assert_eq!(expected[i], result);
         }
     }
