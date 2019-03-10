@@ -16,6 +16,11 @@ fn private_fib(num: i32, cache: &mut Vec<i32>) -> i32 {
         return 1;
     }
 
+    // Check if the result already exists, return if so.
+    if cache[num as usize] != -1 {
+        return cache[num as usize];
+    }
+
     let result = private_fib(num - 1, cache) + private_fib(num - 2, cache);
     cache.insert(num as usize, result);
 
@@ -48,5 +53,18 @@ mod tests {
 
         let res = fib(8);
         assert_eq!(res, 21);
+    }
+
+    #[test]
+    fn large_number_range() {
+        let expected = vec![
+            0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181,
+            6765, 10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811,
+        ];
+
+        for i in 0..expected.len() {
+            let result = fib(i as i32);
+            assert_eq!(expected[i], result);
+        }
     }
 }
