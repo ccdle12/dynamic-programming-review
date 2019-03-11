@@ -1,9 +1,5 @@
 package main
 
-import (
-// "fmt"
-)
-
 func main() {}
 
 func Fib(num int32) int32 {
