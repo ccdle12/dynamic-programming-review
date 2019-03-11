@@ -19,12 +19,8 @@ fn fib(num: i32) -> i32 {
 // 3. Brute Force - Space Complexity: O(2^n), the recursive tree has n levels and each level calls
 //    two recursive functions. "S"
 fn private_fib(num: i32, cache: &mut Vec<i32>) -> i32 {
-    if num == 0 {
-        return 0;
-    }
-
-    if num == 1 {
-        return 1;
+    if num < 2 {
+        return num;
     }
 
     // Check if the result already exists, return if so.
