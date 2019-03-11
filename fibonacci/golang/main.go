@@ -1,5 +1,9 @@
 package main
 
+import (
+	"fmt"
+)
+
 func main() {}
 
 func Fib(num int32) int32 {
@@ -25,6 +29,18 @@ func fib(num int32, cache []int32) int32 {
 
 	result := fib(num-1, cache) + fib(num-2, cache)
 	cache[num] = result
+
+	return cache[num]
+}
+
+func Bottom_up(num int32) int32 {
+	// Initialise with the first 3 base cases.
+	cache := []int32{0, 1, 1}
+
+	for i := int32(3); i <= num; i++ {
+		result := cache[i-1] + cache[i-2]
+		cache = append(cache, result)
+	}
 
 	return cache[num]
 }
