@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+// "fmt"
 )
 
 func main() {}
@@ -33,7 +33,9 @@ func fib(num int32, cache []int32) int32 {
 	return cache[num]
 }
 
-func Bottom_up(num int32) int32 {
+// We only need the (n-1, n-2) to compute fib(n). We can reduce the space
+// complexity of O(n) -> O(1).
+func BottomUp(num int32) int32 {
 	// Initialise with the first 3 base cases.
 	cache := []int32{0, 1, 1}
 
@@ -43,4 +45,23 @@ func Bottom_up(num int32) int32 {
 	}
 
 	return cache[num]
+}
+
+func ImprovedBottomUp(num int32) int32 {
+	// Check and return the base cases.
+	if num < 2 {
+		return num
+	}
+
+	var n1 int32 = 1
+	var n2 int32
+
+	for i := int32(3); i <= num; i++ {
+		result := n1 + n2
+
+		n2 = n1
+		n1 = result
+	}
+
+	return n1 + n2
 }

@@ -36,7 +36,12 @@ func TestLargeInputs(t *testing.T) {
 			t.Fatalf("expected: %v received: %v", expected[i], result)
 		}
 
-		result = Bottom_up(int32(i))
+		result = BottomUp(int32(i))
+		if expected[i] != result {
+			t.Fatalf("expected: %v received: %v", expected[i], result)
+		}
+
+		result = ImprovedBottomUp(int32(i))
 		if expected[i] != result {
 			t.Fatalf("expected: %v received: %v", expected[i], result)
 		}
