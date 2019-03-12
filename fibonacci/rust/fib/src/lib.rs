@@ -4,6 +4,7 @@
 // S - Find the subproblems.
 // T - Turn the solution around.
 
+#[allow(dead_code)]
 fn fib(num: i32) -> i32 {
     let mut cache = vec![];
     for _i in 0..num + 1 {
@@ -36,6 +37,7 @@ fn private_fib(num: i32, cache: &mut Vec<i32>) -> i32 {
 
 // 4. Approach the problem from the bottom up, take the recursive solution and use an interatrive
 //    approach. - "T"
+#[allow(dead_code)]
 fn bottom_up(num: i32) -> i32 {
     // Deal with the base cases first.
     // Create a cache that catches 1-3.
@@ -53,6 +55,7 @@ fn bottom_up(num: i32) -> i32 {
 }
 
 // We only need the last two numbers.
+#[allow(dead_code)]
 fn bottom_up_improved(num: i32) -> i32 {
     // Cover the first 3 base cases.
     if num < 2 {
@@ -62,7 +65,7 @@ fn bottom_up_improved(num: i32) -> i32 {
     let mut n1 = 1;
     let mut n2 = 0;
 
-    for i in 2..num {
+    for _i in 2..num {
         let current = n1 + n2;
 
         // Shift.
