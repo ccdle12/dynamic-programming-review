@@ -20,7 +20,7 @@ fn calc_change(target: i16, cache: &mut Vec<i16>, coins: &Vec<i16>) -> i16 {
 
     for coin in coins {
         if target - coin >= 0 {
-            let current_min = calc_change(target - coin, cache, &coins);
+            let current_min = calc_change(target - coin, cache, coins);
             if current_min < min_coins {
                 min_coins = current_min;
             }
