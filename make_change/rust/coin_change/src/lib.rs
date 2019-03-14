@@ -1,10 +1,7 @@
 use std::i16::MAX;
-use std::iter;
 
 #[allow(dead_code)]
 pub fn min_change(target: i16, coins: Vec<i16>) -> i16 {
-    // let mut cache = iter::repeat(-1).take((target + 1) as usize).collect();
-    // cache.insert(0 as usize, 0);
     let mut cache = vec![0];
     for _i in 1..target + 1 {
         cache.push(-1);
