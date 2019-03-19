@@ -1,8 +1,8 @@
 fn main() {}
 
-fn triple_step(input: Vec<i16>) -> i16 {
+fn triple_step(target: i16) -> i16 {
     let steps = vec![2, 3, 4];
-    inner_triple_step(&steps, *input.last().unwrap())
+    inner_triple_step(&steps, target)
 }
 
 // TODO: (ccdle12)
@@ -39,8 +39,7 @@ mod tests {
 
     #[test]
     fn base_case() {
-        let input = vec![1, 2];
-        assert_eq!(2 as usize, input.len());
+        let input = 2;
 
         let result = triple_step(input);
         assert_eq!(0, result);
@@ -48,7 +47,7 @@ mod tests {
 
     #[test]
     fn simple_input_1() {
-        let input = vec![1, 2, 3];
+        let input = 3;
 
         let result = triple_step(input);
         assert_eq!(1, result);
@@ -56,7 +55,7 @@ mod tests {
 
     #[test]
     fn simple_input_2() {
-        let input = vec![1, 2, 3, 4];
+        let input = 4;
 
         let result = triple_step(input);
         assert_eq!(1, result);
@@ -64,7 +63,7 @@ mod tests {
 
     #[test]
     fn simple_input_3() {
-        let input = vec![1, 2, 3, 4, 5];
+        let input = 5;
 
         let result = triple_step(input);
         assert_eq!(2, result);
@@ -72,7 +71,7 @@ mod tests {
 
     #[test]
     fn simple_input_4() {
-        let input = vec![1, 2, 3, 4, 5, 6];
+        let input = 6;
 
         let result = triple_step(input);
         assert_eq!(2, result);
@@ -80,7 +79,7 @@ mod tests {
 
     #[test]
     fn simple_input_5() {
-        let input = vec![1, 2, 3, 4, 5, 6, 7];
+        let input = 7;
 
         let result = triple_step(input);
         assert_eq!(4, result);
@@ -88,7 +87,7 @@ mod tests {
 
     #[test]
     fn medium_input_1() {
-        let input = vec![1, 2, 3, 4, 5, 6, 7, 8];
+        let input = 8;
 
         let result = triple_step(input);
         assert_eq!(5, result);
@@ -96,7 +95,7 @@ mod tests {
 
     #[test]
     fn medium_input_2() {
-        let input = vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+        let input = 12;
 
         let result = triple_step(input);
         assert_eq!(24, result);
