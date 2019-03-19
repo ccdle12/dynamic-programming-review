@@ -5,6 +5,10 @@ fn triple_step(input: Vec<i16>) -> i16 {
     inner_triple_step(&steps, *input.last().unwrap())
 }
 
+// TODO: (ccdle12)
+// * Analyze space + time complexity
+// * Add cache to improve time complexity
+// * Turn upside down for iterative solution
 fn inner_triple_step(steps: &Vec<i16>, target: i16) -> i16 {
     if target == 1 {
         return 1;
