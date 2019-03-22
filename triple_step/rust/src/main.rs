@@ -1,3 +1,5 @@
+use std::iter;
+
 fn main() {}
 
 fn triple_step(target: i16) -> i16 {
@@ -54,6 +56,36 @@ fn inner_triple_step(cache: &mut Vec<i16>, steps: &Vec<i16>, target: i16) -> i16
     cache[target as usize]
 }
 
+fn iterative_solution(target: i16) -> i16 {
+    let steps = vec![2, 3, 4];
+
+    inner_iterative_solution(&steps, target)
+}
+
+fn inner_iterative_solution(steps: &Vec<i16>, target: i16) -> i16 {
+    let mut results: Vec<i16> = iter::repeat(0).take((target + 1) as usize).collect();
+    results[1] = 1;
+
+    for i in 3..target + 1 {
+        for step in steps {
+            let new_target = i - step;
+            println!("new_target: {}", new_target);
+
+            if new_target < 0 {
+                continue;
+            }
+
+            results[i as usize] += results[new_target as usize];
+
+            println!("{:?}", results);
+        }
+    }
+
+    println!("{:?}", results);
+
+    results[target as usize]
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -64,6 +96,9 @@ mod tests {
 
         let result = triple_step(input);
         assert_eq!(0, result);
+
+        let result = iterative_solution(input);
+        assert_eq!(0, result);
     }
 
     #[test]
@@ -71,6 +106,9 @@ mod tests {
         let input = 3;
 
         let result = triple_step(input);
+        assert_eq!(1, result);
+
+        let result = iterative_solution(input);
         assert_eq!(1, result);
     }
 
@@ -80,6 +118,9 @@ mod tests {
 
         let result = triple_step(input);
         assert_eq!(1, result);
+
+        let result = iterative_solution(input);
+        assert_eq!(1, result);
     }
 
     #[test]
@@ -87,6 +128,9 @@ mod tests {
         let input = 5;
 
         let result = triple_step(input);
+        assert_eq!(2, result);
+
+        let result = iterative_solution(input);
         assert_eq!(2, result);
     }
 
@@ -96,6 +140,9 @@ mod tests {
 
         let result = triple_step(input);
         assert_eq!(2, result);
+
+        let result = iterative_solution(input);
+        assert_eq!(2, result);
     }
 
     #[test]
@@ -103,6 +150,9 @@ mod tests {
         let input = 7;
 
         let result = triple_step(input);
+        assert_eq!(4, result);
+
+        let result = iterative_solution(input);
         assert_eq!(4, result);
     }
 
@@ -112,6 +162,9 @@ mod tests {
 
         let result = triple_step(input);
         assert_eq!(5, result);
+
+        let result = iterative_solution(input);
+        assert_eq!(5, result);
     }
 
     #[test]
@@ -119,6 +172,9 @@ mod tests {
         let input = 12;
 
         let result = triple_step(input);
+        assert_eq!(24, result);
+
+        let result = iterative_solution(input);
         assert_eq!(24, result);
     }
 }
