@@ -1,3 +1,5 @@
+use std::iter;
+
 // "FAST" - Strategy
 // F - First Solution.
 // A - Analyze Solution.
@@ -6,10 +8,7 @@
 
 #[allow(dead_code)]
 fn fib(num: i32) -> i32 {
-    let mut cache = vec![];
-    for _i in 0..num + 1 {
-        cache.push(-1);
-    }
+    let mut cache: Vec<i32> = iter::repeat(-1).take((num + 1) as usize).collect();
 
     private_fib(num, &mut cache)
 }
